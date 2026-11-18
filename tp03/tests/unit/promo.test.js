@@ -17,9 +17,13 @@ describe('applyPromoCode', () => {
   test('arrondit le résultat à 2 décimales', () => {
     expect(applyPromoCode(19.99, 'SAVE10')).toBe(17.99);
   });
+
+  test('lève une RangeError si le prix est négatif ou pas un nombre', () => {
+    expect(() => applyPromoCode(-10, 'SAVE10')).toThrow(RangeError);
+    expect(() => applyPromoCode('100', 'SAVE10')).toThrow(RangeError);
+    expect(() => applyPromoCode(NaN, 'SAVE10')).toThrow(RangeError);
+  });
 });
-
-
 
 
 

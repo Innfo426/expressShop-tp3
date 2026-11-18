@@ -1,9 +1,18 @@
 function applyPromoCode(price, code) {
-  let discount = 0;
-  if (code === 'SAVE10') discount = 0.1;
-  if (code === 'SAVE20') discount = 0.2;
+  if (typeof price !== 'number' || Number.isNaN(price) || price < 0) {
+    throw new RangeError('Le prix doit être un nombre positif.');
+  }
 
-  return Math.round(price * (1 - discount) * 100) / 100;
+  let discount = 0;
+
+  if (code === 'SAVE10') {
+    discount = 0.10;
+  } else if (code === 'SAVE20') {
+    discount = 0.20;
+  }
+
+  const finalPrice = price * (1 - discount);
+  return Math.round(finalPrice * 100) / 100;
 }
 
 module.exports = { applyPromoCode };
