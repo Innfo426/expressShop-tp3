@@ -9,4 +9,9 @@ describe('applyPromoCode', () => {
   test('retire 10 % avec le code SAVE10', () => {
     expect(applyPromoCode(100, 'SAVE10')).toBe(90);
   });
+
+  test('retire 20 % avec le code SAVE20', () => {
+    expect(applyPromoCode(100, 'SAVE20')).toBe(80);
+  });
 });
+
