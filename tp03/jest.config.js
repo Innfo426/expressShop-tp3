@@ -1,6 +1,15 @@
 module.exports = {
   testEnvironment: 'node',
-  roots: ['<rootDir>/src', '<rootDir>/tests'],
-  testMatch: ['**/*.test.js'],
-  collectCoverageFrom: ['src/**/*.js'],
+  coverageThreshold: {
+    './src/orders/orderService.js': {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+  },
 };
+
+
+
+

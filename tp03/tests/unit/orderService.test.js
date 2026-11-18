@@ -69,7 +69,27 @@ describe('orderService', () => {
 
     expect(result.status).toBe('confirmed');
   });
+
+  test('Commande vide : lève une erreur et n appelle aucune dépendance', async () => {
+    const paymentGateway = { charge: jest.fn() };
+    const orderRepository = { save: jest.fn() };
+    const mailer = { send: jest.fn() };
+
+    const service = createOrderService({ paymentGateway, orderRepository, mailer });
+
+    await expect(service.placeOrder({ customerEmail, items: [] }))
+      .rejects.toThrow('Commande vide');
+
+    expect(paymentGateway.charge).not.toHaveBeenCalled();
+    expect(orderRepository.save).not.toHaveBeenCalled();
+    expect(mailer.send).not.toHaveBeenCalled();
+  });
 });
+
+
+
+
+
 
 
 
