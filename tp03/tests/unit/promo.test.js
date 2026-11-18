@@ -13,5 +13,13 @@ describe('applyPromoCode', () => {
   test('retire 20 % avec le code SAVE20', () => {
     expect(applyPromoCode(100, 'SAVE20')).toBe(80);
   });
+
+  test('arrondit le résultat à 2 décimales', () => {
+    expect(applyPromoCode(19.99, 'SAVE10')).toBe(17.99);
+  });
 });
+
+
+
+
 
